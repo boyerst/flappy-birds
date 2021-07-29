@@ -1,11 +1,11 @@
 var mainState = {
-  
+
     preload: function() { 
-      
+      game.load.image('bird', 'assets/bird.png'); 
     },
 
     create: function() { 
-
+      game.stage.backgroundColor = 'red';
     },
 
     update: function() {

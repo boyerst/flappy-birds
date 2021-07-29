@@ -2,6 +2,7 @@ var mainState = {
 
     preload: function() { 
       game.load.image('bird', 'assets/bird.png'); 
+      game.load.image('pipe', 'assets/pipe.png');
     },
 
     create: function() { 
@@ -12,10 +13,13 @@ var mainState = {
       this.bird.body.gravity.y = 1000; 
       var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
       spaceKey.onDown.add(this.jump, this);    
+      this.pipes = game.add.group(); 
 
     },
 
     update: function() {
+      if (this.bird.y < 0 || this.bird.y > 490)
+        this.restartGame();
 
     },
 
@@ -25,7 +29,7 @@ var mainState = {
 
   
     restartGame: function() {
-  
+      game.state.start('main');
     },
 };
 

@@ -29,7 +29,7 @@ var mainState = {
     if (this.bird.y < 0 || this.bird.y > 490)
       this.restartGame();
     game.physics.arcade.overlap(
-      this.bird, this.pipes, this.restartGame, null, this);
+      this.bird, this.pipes, this.hitPipe, null, this);
     if (this.bird.angle < 20)
       this.bird.angle += 1;   
   },
@@ -40,6 +40,8 @@ var mainState = {
     var animation = game.add.tween(this.bird);
     animation.to({angle: -20}, 100);
     animation.start(); 
+    if (this.bird.alive == false)
+      return;  
   },
 
   addOnePipe: function(x, y) {
@@ -61,7 +63,15 @@ var mainState = {
     this.labelScore.text = this.score;  
   },
 
-
+  hitPipe: function() {
+    if (this.bird.alive == false)
+      return;
+    this.bird.alive = false;
+    game.time.events.remove(this.timer);
+    this.pipes.forEach(function(p){
+      p.body.velocity.x = 0;
+    }, this);
+  },
 
 
   restartGame: function() {

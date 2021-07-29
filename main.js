@@ -9,6 +9,7 @@ var mainState = {
 
 
   create: function() { 
+    game.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
     game.stage.backgroundColor = '#71c5cf';
     game.physics.startSystem(Phaser.Physics.ARCADE);
     this.bird = game.add.sprite(100, 245, 'bird');
@@ -83,7 +84,7 @@ var mainState = {
 
 };
 
-var game = new Phaser.Game(400, 490);
+var game = new Phaser.Game();
 
 
 game.state.add('main', mainState); 

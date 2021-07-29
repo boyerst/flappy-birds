@@ -5,11 +5,27 @@ var mainState = {
     },
 
     create: function() { 
-      game.stage.backgroundColor = 'red';
+      game.stage.backgroundColor = '#71c5cf';
+      game.physics.startSystem(Phaser.Physics.ARCADE);
+      this.bird = game.add.sprite(100, 245, 'bird');
+      game.physics.arcade.enable(this.bird);
+      this.bird.body.gravity.y = 1000; 
+      var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+      spaceKey.onDown.add(this.jump, this);    
+
     },
 
     update: function() {
 
+    },
+
+    jump: function() {
+      this.bird.body.velocity.y = -350;
+    },
+
+  
+    restartGame: function() {
+  
     },
 };
 
